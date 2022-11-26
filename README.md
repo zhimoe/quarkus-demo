@@ -68,3 +68,7 @@ If you want to learn more about building native executables, please consult http
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## kotlin相关问题
+### ctx.proceed() must not be null
+原因： ctx返回值是Object，所以这里kotlin方法的返回值需要改成Any?，而不是Any。

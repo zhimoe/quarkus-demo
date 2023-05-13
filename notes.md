@@ -62,7 +62,7 @@ Byte,Short,Integer,Long,Float,Double,Character,Class(Class.forName)自动转换
 #### 配置属性的验证
 
 需要`quarkus-hibernate-validator`扩展, 然后使用@Max、@Digits、@Email、@NotNull和@NotBlank等校验注解.
-自定义校验器需要实现`javax.validation.ConstraintValidator`接口.
+自定义校验器需要实现`jakarta.validation.ConstraintValidator`接口.
 
 #### 自定义配置源
 
@@ -126,7 +126,7 @@ public class AppEventListener {
 
 #### 拦截器
 
-1. 通过`@javax.interceptor.InterceptorBinding`创建一个拦截器注解.
+1. 通过`@jakarta.interceptor.InterceptorBinding`创建一个拦截器注解.
 
 ```java
 
@@ -138,7 +138,7 @@ public @interface Logit {
 }
 ```
 
-2. 通过`@javax.init.AroundInvoke`和`@javax.init.AroundConstruct`两个具有相应拦截绑定功能的拦截器.
+2. 通过`@jakarta.init.AroundInvoke`和`@jakarta.init.AroundConstruct`两个具有相应拦截绑定功能的拦截器.
 
 ```java
 
@@ -161,11 +161,11 @@ Quarkus实现了JAX-RS规范, 支持@GET,@POST, @PUT等http动词注解.默认�
 通过`@Context UriInfo uriInfo`获取url内容.
 通过`@QueryParam("p")`参数注解获取QueryString中的参数.
 其他参数：表单参数 (`@FormParam`)、矩阵参数(`@MatrixParam`)或cookie值 (`@CookieParam`).
-此外, 使用`@Context`注解, 你还可以注入其他与 JAX-RS相关的元素, 如`javax.ws.rs.core.SecurityContext`、
-`javax.ws.rs.sse.SseEventSink`或`javax.ws.rs.sse.Sse`.
+此外, 使用`@Context`注解, 你还可以注入其他与 JAX-RS相关的元素, 如`jakarta.ws.rs.core.SecurityContext`、
+`jakarta.ws.rs.sse.SseEventSink`或`jakarta.ws.rs.sse.Sse`.
 
 json-p(processing)和json-b(binding)是JavaEE规范.如果API需要返回json,需要增加`quarkus-testeasy-jsonb`扩展.
-如果data model的字段与json字段不同名, 需要使用`javax.json.bind.annotation.JsonbProperty`注解绑定.
+如果data model的字段与json字段不同名, 需要使用`jakarta.json.bind.annotation.JsonbProperty`注解绑定.
 
 ```java
 class Stu {
@@ -220,10 +220,10 @@ quarkus.datasource.orders.password =  dewey
 非默认数据源需要使用@DataSource("ds name")指定:
 
 ```java
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @Inject
-DataSource("orders")
+@DataSource("orders")
 AgroalDatasource ordersDs;
 
 ```
@@ -286,4 +286,4 @@ production模式和native image模式下, quarkus的类加载器都是 system Cl
 `CuratedApplication` 可以用于创建一个`AugmentAction` 实例, 这个实例用于创建app并启动/重启.
 
 在dev模式下, quarkus通过classloader支持热加载, 在prod模式下, 只有 system ClassLoader.
-除了热加载, 在dev模式下, 提供了`q/dev` DEV UI,支持配置应用, 查看缓存, 查看类信息, 查看/执行定时任务, 查看健康状态, 执行数据脚本迁移等等.
+除了热加载, 在dev模式下, 提供了`q/dev-ui` DEV UI,支持配置应用, 查看缓存, 查看类信息, 查看/执行定时任务, 查看健康状态, 执行数据脚本迁移等等.

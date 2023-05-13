@@ -4,14 +4,14 @@ import io.quarkus.cache.CacheResult
 import moe.zhi.config.TimezoneConfig
 import moe.zhi.model.DateTime
 import java.util.*
-import javax.inject.Inject
-import javax.validation.constraints.NotBlank
-import javax.ws.rs.*
-import javax.ws.rs.client.ClientBuilder
-import javax.ws.rs.core.Context
-import javax.ws.rs.core.MediaType
-import javax.ws.rs.core.Response
-import javax.ws.rs.core.UriInfo
+import jakarta.inject.Inject
+import jakarta.validation.constraints.NotBlank
+import jakarta.ws.rs.*
+import jakarta.ws.rs.client.ClientBuilder
+import jakarta.ws.rs.core.Context
+import jakarta.ws.rs.core.MediaType
+import jakarta.ws.rs.core.Response
+import jakarta.ws.rs.core.UriInfo
 
 /**
  * v1.0 fix me
@@ -35,7 +35,7 @@ class TimeController {
         @QueryParam("tz") tz: String?,
         @HeaderParam("Cache-Control") cacheControl: @NotBlank String?
     ): DateTime {
-        var timezone = tzConfig!!.timezone()
+        var timezone = tzConfig.timezone()
         if (Objects.nonNull(tz)) {
             timezone = tz
         }

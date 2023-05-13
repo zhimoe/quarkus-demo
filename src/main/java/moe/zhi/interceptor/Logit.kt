@@ -1,7 +1,7 @@
 package moe.zhi.interceptor
 
 import java.lang.annotation.Inherited
-import javax.interceptor.InterceptorBinding
+import jakarta.interceptor.InterceptorBinding
 
 /**
  * v1.0 fix me

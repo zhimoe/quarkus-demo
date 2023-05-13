@@ -5,8 +5,8 @@ import io.quarkus.runtime.ShutdownEvent
 import io.quarkus.runtime.StartupEvent
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.slf4j.LoggerFactory
-import javax.enterprise.context.ApplicationScoped
-import javax.enterprise.event.Observes
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.enterprise.event.Observes
 
 /**
  * v1.0 fix me

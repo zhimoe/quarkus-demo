@@ -5,11 +5,13 @@ import io.quarkus.scheduler.ScheduledExecution
 import moe.zhi.interceptor.Logit
 import org.slf4j.LoggerFactory
 import java.util.concurrent.atomic.AtomicInteger
-import javax.enterprise.context.ApplicationScoped
-import javax.ws.rs.client.Client
-import javax.ws.rs.client.ClientBuilder
-import javax.ws.rs.core.MediaType
-import javax.ws.rs.core.Response
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.inject.Inject
+import jakarta.ws.rs.client.Client
+import jakarta.ws.rs.client.ClientBuilder
+import jakarta.ws.rs.core.MediaType
+import jakarta.ws.rs.core.Response
+import org.jboss.logging.Logger
 
 /**
  * v1.0 fix me
@@ -20,9 +22,17 @@ import javax.ws.rs.core.Response
  */
 @ApplicationScoped
 class CronTask {
-    private val log = LoggerFactory.getLogger(this::class.java)
-    var count: AtomicInteger = AtomicInteger()
+
+    //    @Inject
+    //    private lateinit var log: Logger
+
+    val log: org.slf4j.Logger = LoggerFactory.getLogger(this::class.java)
+
+
+    private var count: AtomicInteger = AtomicInteger()
+
     private val rest: Client = ClientBuilder.newClient()
+
     fun get(): Int {
         return count.get()
     }
@@ -37,7 +47,7 @@ class CronTask {
             .get(Response::class.java)
         println(resp.readEntity(String::class.java))
         count.incrementAndGet()
-        log.info("### cron task get fired" + execution.getTrigger().getNextFireTime())
+        log.info("### cron task get fired" + execution.trigger.nextFireTime)
         log.info("### cron execution counted: " + get())
     }
 }

@@ -7,15 +7,16 @@
     <artifactId>quarkus-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <properties>
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
-        <failsafe.useModulePath>false</failsafe.useModulePath>
+        <compiler-plugin.version>3.11.0</compiler-plugin.version>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>2.14.1.Final</quarkus.platform.version>
-        <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-        <kotlin.version>1.7.21</kotlin.version>
+        <quarkus.platform.version>3.0.3.Final</quarkus.platform.version>
+        <skipITs>true</skipITs>
+        <surefire-plugin.version>3.1.0</surefire-plugin.version>
+        <kotlin.version>1.8.21</kotlin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -29,16 +30,11 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <!-- quarkus使用jboss logging 应用使用slf4j logging-->
         <dependency>
             <groupId>org.jboss.slf4j</groupId>
             <artifactId>slf4j-jboss-logmanager</artifactId>
         </dependency>
-        <!--    <dependency>-->
-        <!--      <groupId>org.projectlombok</groupId>-->
-        <!--      <artifactId>lombok</artifactId>-->
-        <!--      <version>1.18.24</version>-->
-        <!--      <scope>provided</scope>-->
-        <!--    </dependency>-->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-orm</artifactId>
@@ -175,9 +171,9 @@
                     </compilerPlugins>
                     <pluginOptions>
                         <!-- Each annotation is placed on its own line -->
-                        <option>all-open:annotation=javax.ws.rs.Path</option>
-                        <option>all-open:annotation=javax.interceptor.InterceptorBinding</option>
-                        <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
+                        <option>all-open:annotation=jakarta.ws.rs.Path</option>
+                        <option>all-open:annotation=jakarta.interceptor.InterceptorBinding</option>
+                        <option>all-open:annotation=jakarta.enterprise.context.ApplicationScoped</option>
                         <option>all-open:annotation=moe.zhi.interceptor.Logit</option>
                     </pluginOptions>
                 </configuration>
